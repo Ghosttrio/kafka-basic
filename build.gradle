@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+    id 'com.github.davidmc24.gradle.plugin.avro' version '1.9.1'  // .avsc → Java 클래스 자동 생성
+}
+
+group = 'com.ghosttrio'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://packages.confluent.io/maven/' }  // Confluent 직렬화기용 (필수)
+
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    implementation 'org.apache.kafka:kafka-clients:4.2.0'
+    implementation 'org.slf4j:slf4j-simple:2.0.16'
+    implementation 'org.apache.avro:avro:1.12.0'
+    implementation 'io.confluent:kafka-avro-serializer:8.1.0'
+}
+
+test {
+    useJUnitPlatform()
+}
